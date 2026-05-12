@@ -1,0 +1,99 @@
+/* src/components/StudyScreen/StudyScreen.css */
+
+.study-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+
+.study-panel {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.study-panel--left {
+  background: var(--color-bg);
+  border-right: 0.5px solid var(--color-border);
+}
+
+.study-panel--right {
+  background: var(--color-bg-secondary);
+  align-items: center;
+}
+
+.study-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.text-reference {
+  flex: 1;
+  overflow-y: auto;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  padding: 12px;
+  border-radius: var(--radius-md);
+  border: 0.5px solid var(--color-border);
+  background: var(--color-bg-secondary);
+  white-space: pre-wrap;
+}
+
+.btn-secondary {
+  align-self: flex-start;
+  padding: 9px 16px;
+  border-radius: var(--radius-md);
+  border: 0.5px solid var(--color-border-mid);
+  background: transparent;
+  color: var(--color-text);
+  font-size: 14px;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.btn-secondary:hover { background: var(--color-bg-tertiary); }
+
+.study-header {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.score-display {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.progress-bg {
+  width: 100%;
+  max-width: 400px;
+  height: 3px;
+  background: var(--color-bg-tertiary);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--color-text);
+  border-radius: 99px;
+  transition: width 0.3s ease;
+}
+
+@media (max-width: 640px) {
+  .study-layout { grid-template-columns: 1fr; }
+  .study-panel--left {
+    border-right: none;
+    border-bottom: 0.5px solid var(--color-border);
+    max-height: 35vh;
+  }
+  .study-panel--right { min-height: 65vh; }
+}

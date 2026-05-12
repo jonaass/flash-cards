@@ -1,0 +1,91 @@
+/* src/components/InputPanel/InputPanel.css */
+
+.input-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+
+.panel {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.panel--left {
+  background: var(--color-bg);
+  border-right: 0.5px solid var(--color-border);
+}
+
+.panel--right {
+  background: var(--color-bg-secondary);
+  align-items: center;
+  justify-content: center;
+}
+
+.label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.textarea {
+  flex: 1;
+  min-height: 340px;
+  resize: vertical;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  border: 0.5px solid var(--color-border);
+  background: var(--color-bg-secondary);
+  color: var(--color-text);
+  font-size: 14px;
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  outline: none;
+  transition: border-color var(--transition);
+}
+
+.textarea:focus {
+  border-color: var(--color-border-mid);
+}
+
+.char-counter {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.error-msg {
+  font-size: 13px;
+  color: var(--color-danger-text);
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 11px;
+  border-radius: var(--radius-md);
+  border: none;
+  background: var(--color-text);
+  color: var(--color-bg);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity var(--transition);
+}
+
+.btn-primary:hover:not(:disabled) { opacity: 0.8; }
+.btn-primary:disabled { opacity: 0.35; cursor: not-allowed; }
+
+/* Empty state */
+.empty-state { text-align: center; color: var(--color-text-muted); }
+.empty-icon  { font-size: 36px; opacity: 0.25; margin-bottom: 12px; }
+.empty-title { font-size: 14px; }
+.empty-sub   { font-size: 13px; opacity: 0.7; margin-top: 4px; }
+
+@media (max-width: 640px) {
+  .input-layout { grid-template-columns: 1fr; }
+  .panel--left  { border-right: none; border-bottom: 0.5px solid var(--color-border); }
+  .panel--right { min-height: 200px; }
+}
