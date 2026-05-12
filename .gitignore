@@ -1,0 +1,54 @@
+# ============================================================
+# .gitignore — FlashCard IA (React + Groq)
+# ============================================================
+
+# ── Segurança (NUNCA enviar para o GitHub) ────────────────
+.env
+.env.local
+.env.production
+.env.*.local
+
+# ── Dependências (geradas pelo npm install) ───────────────
+node_modules/
+
+# ── Build do Vite (gerado pelo npm run build) ─────────────
+dist/
+dist-ssr/
+
+# ── Cache do Vite ─────────────────────────────────────────
+.vite/
+*.local
+
+# ── Logs ──────────────────────────────────────────────────
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+logs/
+*.log
+
+# ── Sistema operacional ───────────────────────────────────
+# Windows
+Thumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ── Editores de código ────────────────────────────────────
+# VSCode
+.vscode/*
+!.vscode/extensions.json
+
+# JetBrains (WebStorm, IntelliJ)
+.idea/
+*.iml
+
+# Vim
+*.swp
+*.swo
+
+# ── Testes (se adicionar no futuro) ───────────────────────
+coverage/
