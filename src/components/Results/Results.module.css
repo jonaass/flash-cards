@@ -1,0 +1,28 @@
+.page   { display: flex; flex-direction: column; min-height: 100vh; background: var(--bg); }
+.center { display: flex; align-items: center; justify-content: center; flex: 1; padding: 2rem; }
+.card   { background: var(--card-bg); border-radius: var(--radius-xl); box-shadow: var(--card-shadow); padding: 2.5rem; width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: 20px; }
+.title  { font-family: var(--font-display); font-size: 22px; font-weight: 500; color: var(--text); }
+.sub    { font-size: 13px; color: var(--text-muted); margin-top: -12px; }
+.metrics { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+.metric  { border-radius: var(--radius-md); padding: 14px 8px; text-align: center; display: flex; flex-direction: column; gap: 4px; }
+.metricSuccess { background: var(--success-bg); }
+.metricDanger  { background: var(--danger-bg); }
+.metricInfo    { background: var(--info-bg); }
+.metricVal { font-size: 24px; font-weight: 600; }
+.metricLbl { font-size: 11px; opacity: 0.8; }
+.metricSuccess .metricVal, .metricSuccess .metricLbl { color: var(--success-text); }
+.metricDanger  .metricVal, .metricDanger  .metricLbl { color: var(--danger-text); }
+.metricInfo    .metricVal, .metricInfo    .metricLbl { color: var(--info-text); }
+.hardest { background: var(--bg-input); border-radius: var(--radius-md); padding: 1rem 1.25rem; display: flex; flex-direction: column; gap: 5px; }
+.hardestLabel { font-size: 10px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.07em; }
+.hardestTopic { font-size: 15px; font-weight: 500; color: var(--text); }
+.hardestDesc  { font-size: 12px; color: var(--text-muted); }
+.breakdown { display: flex; flex-direction: column; gap: 12px; }
+.breakdownLabel { font-size: 10px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.07em; }
+.row { display: flex; flex-direction: column; gap: 5px; }
+.rowHeader { display: flex; justify-content: space-between; font-size: 13px; color: var(--text); }
+.rowStat { color: var(--text-muted); }
+.track { height: 4px; background: var(--border); border-radius: 99px; overflow: hidden; }
+.fill  { height: 100%; border-radius: 99px; transition: width 0.5s ease; }
+.btnRestart { width: 100%; padding: 13px; border-radius: var(--radius-md); border: 1px solid var(--border); background: transparent; color: var(--text); font-family: var(--font-ui); font-size: 14px; font-weight: 500; cursor: pointer; transition: background var(--transition); }
+.btnRestart:hover { background: var(--bg-hover); }

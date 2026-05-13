@@ -1,64 +1,35 @@
-// src/components/FlashCard/FlashCard.jsx
-//
-// Card individual com animação de flip (frente/verso).
-//
-// Props:
-//   card: { topic, question, answer } — dados do card atual
-//   onAnswer(isCorrect: boolean)      — callback ao julgar resposta
-//
-// Estado interno:
-//   flipped — controla se o card está virado (mostrando a resposta)
-//
-// Quando o card muda (prop `card` diferente), o estado de flip
-// é resetado via key no componente pai (StudyScreen).
-
+// FlashCard.jsx — Card com flip estilo SimpleCards
 import { useState } from 'react'
-import './FlashCard.css'
+import styles from './FlashCard.module.css'
 
 export function FlashCard({ card, onAnswer }) {
   const [flipped, setFlipped] = useState(false)
 
-  function reveal() {
-    setFlipped(true)
-  }
-
   return (
-    <div className="flashcard-wrapper">
-
-      {/* Animação 3D de flip */}
-      <div className={`flip-inner${flipped ? ' flipped' : ''}`}>
-
-        {/* Frente: pergunta */}
-        <div className="flip-face flip-front">
-          <span className="face-label">PERGUNTA</span>
-          <p className="card-text">{card.question}</p>
-          <span className="card-topic">{card.topic}</span>
+    <div className={styles.wrapper}>
+      <div className={styles.flipScene} onClick={() => setFlipped(f => !f)}>
+        <div className={`${styles.flipInner} ${flipped ? styles.flipped : ''}`}>
+          <div className={styles.face}>
+            <span className={styles.faceLabel}>PERGUNTA</span>
+            <p className={styles.faceText}>{card.question}</p>
+            <span className={styles.hint}>Clique para ver a resposta</span>
+          </div>
+          <div className={`${styles.face} ${styles.faceBack}`}>
+            <span className={styles.faceLabel}>RESPOSTA</span>
+            <p className={styles.faceText}>{card.answer}</p>
+            <span className={styles.hint}>Clique para ver a pergunta</span>
+          </div>
         </div>
-
-        {/* Verso: resposta */}
-        <div className="flip-face flip-back">
-          <span className="face-label">RESPOSTA</span>
-          <p className="card-text">{card.answer}</p>
-        </div>
-
       </div>
 
-      {/* Botões de ação */}
-      {!flipped ? (
-        <button className="btn-reveal" onClick={reveal}>
-          Revelar resposta
-        </button>
-      ) : (
-        <div className="action-row">
-          <button className="btn-judge btn-wrong"  onClick={() => onAnswer(false)}>
-            ✗ &nbsp; Errei
-          </button>
-          <button className="btn-judge btn-correct" onClick={() => onAnswer(true)}>
-            ✓ &nbsp; Acertei
-          </button>
-        </div>
-      )}
+      <span className={styles.topic}>{card.topic}</span>
 
+      <div className={`${styles.actions} ${flipped ? styles.actionsVisible : ''}`}>
+        <button className={styles.btnKnow}     onClick={() => onAnswer(false)}>✕ &nbsp; Não Sei</button>
+        <button className={styles.btnRemember} onClick={() => onAnswer(true)}>✓ &nbsp; Lembrei</button>
+      </div>
+
+      {!flipped && <p className={styles.flipHint}>Clique no card para revelar a resposta</p>}
     </div>
   )
 }

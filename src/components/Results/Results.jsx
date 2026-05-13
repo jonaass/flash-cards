@@ -1,111 +1,82 @@
-// src/components/Results/Results.jsx
-//
-// Tela de resultados: métricas gerais + dificuldade principal + breakdown.
-//
-// Props:
-//   results   — array de { topic, question, correct }
-//   onRestart — callback para voltar ao início
-//
-// Toda a lógica de cálculo fica aqui em funções puras (calcStats),
-// mantendo o hook useFlashcards mais enxuto.
-
-import './Results.css'
-
-// ── Funções puras de cálculo ──────────────────────────────
+// Results.jsx — Tela de resultados no novo estilo
+import { TopBar } from '../TopBar/TopBar'
+import styles from './Results.module.css'
 
 function calcStats(results) {
   const total   = results.length
   const correct = results.filter(r => r.correct).length
   const wrong   = total - correct
   const pct     = total > 0 ? Math.round((correct / total) * 100) : 0
-
-  // Agrupa por tópico
   const topicMap = {}
   results.forEach(r => {
     if (!topicMap[r.topic]) topicMap[r.topic] = { correct: 0, wrong: 0 }
     topicMap[r.topic][r.correct ? 'correct' : 'wrong']++
   })
-
-  // Ordena por taxa de erro (maior → menor)
   const topics = Object.entries(topicMap)
-    .map(([name, s]) => {
-      const t       = s.correct + s.wrong
-      const errRate = t > 0 ? s.wrong / t : 0
-      const pctOk   = Math.round((s.correct / t) * 100)
-      return { name, ...s, total: t, errRate, pctOk }
-    })
-    .sort((a, b) => b.errRate - a.errRate)
-
+    .map(([name, s]) => { const t = s.correct + s.wrong; return { name, ...s, total: t, pctOk: Math.round((s.correct / t) * 100) } })
+    .sort((a, b) => b.pctOk - a.pctOk)
   return { total, correct, wrong, pct, topics }
 }
 
 function barColor(pct) {
-  if (pct >= 70) return 'var(--color-success-text)'
-  if (pct >= 40) return 'var(--color-warn-text)'
-  return 'var(--color-danger-text)'
+  if (pct >= 70) return 'var(--success-text)'
+  if (pct >= 40) return 'var(--warn-text)'
+  return 'var(--danger-text)'
 }
 
-// ── Componente ────────────────────────────────────────────
-
-export function Results({ results, onRestart }) {
+export function Results({ results, onRestart, theme, onToggleTheme }) {
   const { correct, wrong, pct, topics } = calcStats(results)
-  const hardest = topics[0]
-  const showHardest = hardest && hardest.wrong > 0
+  const hardest = [...topics].sort((a, b) => a.pctOk - b.pctOk)[0]
 
   return (
-    <div className="results-wrapper">
-      <h2 className="results-title">Resultado final</h2>
-      <p className="results-sub">Veja como você foi e onde focar nos estudos</p>
+    <div className={styles.page}>
+      <TopBar theme={theme} onToggleTheme={onToggleTheme} activeTab="estudar" />
+      <div className={styles.center}>
+        <div className={styles.card}>
+          <h2 className={styles.title}>Sessão concluída</h2>
+          <p className={styles.sub}>Veja seu desempenho e onde focar na revisão</p>
 
-      {/* Métricas gerais */}
-      <div className="metrics-grid">
-        <div className="metric-card metric-success">
-          <span className="metric-value">{correct}</span>
-          <span className="metric-label">Acertos</span>
-        </div>
-        <div className="metric-card metric-danger">
-          <span className="metric-value">{wrong}</span>
-          <span className="metric-label">Erros</span>
-        </div>
-        <div className="metric-card metric-info">
-          <span className="metric-value">{pct}%</span>
-          <span className="metric-label">Aproveitamento</span>
-        </div>
-      </div>
-
-      {/* Principal dificuldade */}
-      {showHardest && (
-        <div className="hardest-block">
-          <span className="section-label">Principal dificuldade</span>
-          <p className="hardest-topic">{hardest.name}</p>
-          <p className="hardest-desc">
-            {hardest.wrong} erro{hardest.wrong !== 1 ? 's' : ''} neste tópico — revise com atenção!
-          </p>
-        </div>
-      )}
-
-      {/* Breakdown por tópico */}
-      <div className="breakdown">
-        <span className="section-label">Desempenho por tópico</span>
-        {topics.map(t => (
-          <div key={t.name} className="topic-row">
-            <div className="topic-header">
-              <span className="topic-name">{t.name}</span>
-              <span className="topic-stat">{t.correct}/{t.total} — {t.pctOk}%</span>
+          <div className={styles.metrics}>
+            <div className={`${styles.metric} ${styles.metricSuccess}`}>
+              <span className={styles.metricVal}>{correct}</span>
+              <span className={styles.metricLbl}>Lembrei</span>
             </div>
-            <div className="topic-track">
-              <div
-                className="topic-fill"
-                style={{ width: `${t.pctOk}%`, background: barColor(t.pctOk) }}
-              />
+            <div className={`${styles.metric} ${styles.metricDanger}`}>
+              <span className={styles.metricVal}>{wrong}</span>
+              <span className={styles.metricLbl}>Não Sei</span>
+            </div>
+            <div className={`${styles.metric} ${styles.metricInfo}`}>
+              <span className={styles.metricVal}>{pct}%</span>
+              <span className={styles.metricLbl}>Aproveit.</span>
             </div>
           </div>
-        ))}
-      </div>
 
-      <button className="btn-restart" onClick={onRestart}>
-        Gerar novos flashcards
-      </button>
+          {hardest && hardest.wrong > 0 && (
+            <div className={styles.hardest}>
+              <span className={styles.hardestLabel}>Principal dificuldade</span>
+              <p className={styles.hardestTopic}>{hardest.name}</p>
+              <p className={styles.hardestDesc}>{hardest.wrong} erro{hardest.wrong !== 1 ? 's' : ''} neste tópico — revise com atenção</p>
+            </div>
+          )}
+
+          <div className={styles.breakdown}>
+            <span className={styles.breakdownLabel}>Desempenho por tópico</span>
+            {topics.map(t => (
+              <div key={t.name} className={styles.row}>
+                <div className={styles.rowHeader}>
+                  <span>{t.name}</span>
+                  <span className={styles.rowStat}>{t.correct}/{t.total} — {t.pctOk}%</span>
+                </div>
+                <div className={styles.track}>
+                  <div className={styles.fill} style={{ width: `${t.pctOk}%`, background: barColor(t.pctOk) }} />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <button className={styles.btnRestart} onClick={onRestart}>Novo baralho</button>
+        </div>
+      </div>
     </div>
   )
 }

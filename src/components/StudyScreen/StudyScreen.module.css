@@ -1,0 +1,13 @@
+.page { display: flex; flex-direction: column; min-height: 100vh; background: var(--bg); }
+.body { display: grid; grid-template-columns: 1fr 1.6fr; flex: 1; min-height: calc(100vh - 56px); }
+.left { display: flex; flex-direction: column; gap: 12px; padding: 2rem; border-right: 1px solid var(--border); }
+.leftLabel { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.07em; }
+.sourceText { flex: 1; overflow-y: auto; font-size: 13px; line-height: 1.8; color: var(--text-muted); white-space: pre-wrap; padding: 14px; background: var(--bg-input); border-radius: var(--radius-md); border: 1px solid var(--border); }
+.btnNew { padding: 10px 16px; border-radius: var(--radius-md); border: 1px solid var(--border); background: transparent; color: var(--text-muted); font-family: var(--font-ui); font-size: 13px; cursor: pointer; transition: all var(--transition); align-self: flex-start; }
+.btnNew:hover { background: var(--bg-hover); color: var(--text); }
+.right { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px; padding: 2.5rem 2rem; }
+.progressRow { display: flex; align-items: center; gap: 12px; width: 100%; max-width: 480px; }
+.progressLabel, .scoreLabel { font-size: 12px; color: var(--text-muted); white-space: nowrap; }
+.progressTrack { flex: 1; height: 3px; background: var(--border); border-radius: 99px; overflow: hidden; }
+.progressFill  { height: 100%; background: var(--text); border-radius: 99px; transition: width 0.35s ease; }
+@media (max-width: 700px) { .body { grid-template-columns: 1fr; } .left { display: none; } }
