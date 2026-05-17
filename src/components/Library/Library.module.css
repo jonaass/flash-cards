@@ -1,9 +1,14 @@
-/* Library.module.css */
+/* src/components/Library/Library.module.css */
 
-.page { display: flex; flex-direction: column; min-height: 100vh; background: var(--bg); }
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--bg);
+}
 
 .body {
-  max-width: 900px;
+  max-width: 960px;
   margin: 0 auto;
   width: 100%;
   padding: 2.5rem 2rem;
@@ -12,7 +17,11 @@
   gap: 28px;
 }
 
-.header { display: flex; flex-direction: column; gap: 6px; }
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
 
 .title {
   font-family: var(--font-display);
@@ -21,13 +30,16 @@
   color: var(--text);
 }
 
-.sub { font-size: 14px; color: var(--text-muted); }
+.sub {
+  font-size: 14px;
+  color: var(--text-muted);
+}
 
-/* Grid de cards */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 16px;
+  align-items: start;
 }
 
 .card {
@@ -43,7 +55,7 @@
 }
 
 .card:hover {
-  box-shadow: 0 6px 32px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06);
+  box-shadow: 0 6px 32px rgba(0, 0, 0, 0.10), 0 1px 4px rgba(0, 0, 0, 0.06);
 }
 
 .cardTop {
@@ -76,6 +88,115 @@
   color: var(--text-muted);
 }
 
+.performance {
+  background: var(--bg-input);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.perfHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.perfLabel {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.perfPct {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.barTrack {
+  height: 5px;
+  background: var(--border);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.barFill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.5s ease;
+}
+
+.perfStats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.statCorrect {
+  color: #3A6B10;
+  font-weight: 500;
+}
+
+.statWrong {
+  color: #A32D2D;
+  font-weight: 500;
+}
+
+.topics {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 6px;
+  border-top: 1px solid var(--border);
+}
+
+.topicsLabel {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.topicRow {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.topicName {
+  font-size: 12px;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.topicTrack {
+  height: 3px;
+  background: var(--border);
+  border-radius: 99px;
+  overflow: hidden;
+  min-width: 60px;
+}
+
+.topicFill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.5s ease;
+}
+
+.topicPct {
+  font-size: 11px;
+  color: var(--text-muted);
+  min-width: 28px;
+  text-align: right;
+}
+
 .cardActions {
   display: flex;
   gap: 8px;
@@ -95,7 +216,10 @@
   cursor: pointer;
   transition: opacity var(--transition);
 }
-.btnStudy:hover { opacity: 0.82; }
+
+.btnStudy:hover {
+  opacity: 0.82;
+}
 
 .btnDelete {
   padding: 9px 12px;
@@ -107,9 +231,13 @@
   cursor: pointer;
   transition: all var(--transition);
 }
-.btnDelete:hover { background: var(--danger-bg); color: var(--danger-text); border-color: var(--danger-text); }
 
-/* Estado vazio */
+.btnDelete:hover {
+  background: var(--danger-bg);
+  color: var(--danger-text);
+  border-color: var(--danger-text);
+}
+
 .empty {
   display: flex;
   flex-direction: column;
@@ -119,9 +247,21 @@
   text-align: center;
 }
 
-.emptyIcon  { font-size: 48px; opacity: 0.4; }
-.emptyTitle { font-size: 16px; font-weight: 500; color: var(--text); }
-.emptySub   { font-size: 14px; color: var(--text-muted); }
+.emptyIcon {
+  font-size: 48px;
+  opacity: 0.4;
+}
+
+.emptyTitle {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.emptySub {
+  font-size: 14px;
+  color: var(--text-muted);
+}
 
 .btnStart {
   margin-top: 8px;
@@ -136,4 +276,7 @@
   cursor: pointer;
   transition: opacity var(--transition);
 }
-.btnStart:hover { opacity: 0.82; }
+
+.btnStart:hover {
+  opacity: 0.82;
+}
