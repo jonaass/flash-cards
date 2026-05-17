@@ -1,43 +1,213 @@
-.page { display: flex; flex-direction: column; min-height: 100vh; background: var(--bg); }
-.body { display: grid; grid-template-columns: 1fr 1fr; flex: 1; min-height: calc(100vh - 56px); }
-.left { display: flex; flex-direction: column; gap: 14px; padding: 2rem; border-right: 1px solid var(--border); }
-.field { display: flex; flex-direction: column; gap: 6px; }
-.fieldGrow { flex: 1; }
-.fieldLabel { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.07em; }
+/* InputScreen.module.css */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  flex: 1;
+  min-height: calc(100vh - 56px);
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 2rem;
+  border-right: 1px solid var(--border);
+  background: var(--bg-panel);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fieldGrow {
+  flex: 1;
+}
+
+.fieldLabel {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
 .deckInput {
-  padding: 10px 14px; border-radius: var(--radius-md); border: 1px solid var(--border);
-  background: var(--bg-input); color: var(--text); font-family: var(--font-ui); font-size: 14px;
-  outline: none; transition: border-color var(--transition);
+  padding: 11px 14px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  outline: none;
+  transition: border-color var(--transition);
 }
-.deckInput:focus { border-color: var(--text-muted); }
+
+.deckInput:focus {
+  border-color: var(--accent);
+}
+
+.deckHint {
+  font-size: 11px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.deckHint::before {
+  font-size: 10px;
+}
+
 .textarea {
-  flex: 1; min-height: 320px; resize: none; padding: 14px;
-  border-radius: var(--radius-md); border: 1px solid var(--border);
-  background: var(--bg-input); color: var(--text); font-family: var(--font-ui);
-  font-size: 14px; line-height: 1.7; outline: none; transition: border-color var(--transition);
+  flex: 1;
+  min-height: 300px;
+  resize: none;
+  padding: 14px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  line-height: 1.7;
+  outline: none;
+  transition: border-color var(--transition);
 }
-.textarea:focus { border-color: var(--text-muted); }
-.counter { font-size: 12px; color: var(--text-muted); }
-.error   { font-size: 13px; color: var(--danger-text); }
+
+.textarea:focus {
+  border-color: var(--accent);
+}
+
+.counter {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.error {
+  font-size: 13px;
+  color: var(--danger-text);
+}
+
 .btnGenerate {
-  width: 100%; padding: 13px; border-radius: var(--radius-md); border: none;
-  background: var(--text); color: var(--bg); font-family: var(--font-ui);
-  font-size: 14px; font-weight: 600; cursor: pointer; transition: opacity var(--transition);
+  width: 100%;
+  padding: 13px;
+  border-radius: var(--radius-md);
+  border: none;
+  background: var(--text);
+  color: var(--bg);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity var(--transition);
+  letter-spacing: 0.01em;
 }
-.btnGenerate:hover:not(:disabled) { opacity: 0.85; }
-.btnGenerate:disabled { opacity: 0.3; cursor: not-allowed; }
-.right { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; padding: 2rem; }
+
+.btnGenerate:hover:not(:disabled) {
+  opacity: 0.85;
+}
+
+.btnGenerate:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Painel direito */
+.right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 2rem;
+  background: var(--bg);
+}
+
 .cardPreview {
-  width: 100%; max-width: 460px; min-height: 320px;
-  background: var(--card-bg); border-radius: var(--radius-xl); box-shadow: var(--card-shadow);
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding: 2.5rem; text-align: center; gap: 16px; opacity: 0.5;
+  width: 100%;
+  max-width: 460px;
+  min-height: 300px;
+  background: var(--card-bg);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem;
+  text-align: center;
+  gap: 16px;
+  opacity: 0.55;
 }
-.previewLabel { font-size: 10px; font-weight: 600; color: var(--text-muted); letter-spacing: 0.1em; }
-.previewText  { font-family: var(--font-display); font-size: 18px; line-height: 1.6; color: var(--text); }
-.previewHint  { font-size: 12px; color: var(--text-muted); margin-top: 8px; }
-.previewButtons { display: flex; gap: 12px; width: 100%; max-width: 460px; opacity: 0.4; }
-.btnKnow, .btnRemember { flex: 1; padding: 14px; border-radius: var(--radius-md); font-family: var(--font-ui); font-size: 14px; font-weight: 500; cursor: not-allowed; }
-.btnKnow     { background: var(--btn-know-bg); color: var(--btn-know-text); border: 1px solid var(--btn-know-border); }
-.btnRemember { background: var(--btn-rem-bg);  color: var(--btn-rem-text);  border: none; }
-@media (max-width: 700px) { .body { grid-template-columns: 1fr; } .right { display: none; } }
+
+.previewLabel {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+}
+
+.previewText {
+  font-family: var(--font-display);
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.previewHint {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+.previewButtons {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  max-width: 460px;
+  opacity: 0.4;
+}
+
+.btnKnow,
+.btnRemember {
+  flex: 1;
+  padding: 14px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: not-allowed;
+}
+
+.btnKnow {
+  background: var(--btn-know-bg);
+  color: var(--btn-know-text);
+  border: 1.5px solid var(--btn-know-border);
+}
+
+.btnRemember {
+  background: var(--btn-rem-bg);
+  color: var(--btn-rem-text);
+  border: none;
+}
+
+@media (max-width: 700px) {
+  .body {
+    grid-template-columns: 1fr;
+  }
+
+  .right {
+    display: none;
+  }
+}

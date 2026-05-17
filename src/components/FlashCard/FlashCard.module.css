@@ -1,22 +1,123 @@
-.wrapper { display: flex; flex-direction: column; align-items: center; gap: 14px; width: 100%; max-width: 480px; }
-.flipScene { width: 100%; perspective: 1000px; cursor: pointer; }
-.flipInner { position: relative; width: 100%; height: 340px; transform-style: preserve-3d; transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); }
-.flipInner.flipped { transform: rotateY(180deg); }
-.face {
-  position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden;
-  background: var(--card-bg); border-radius: var(--radius-xl); box-shadow: var(--card-shadow);
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding: 2.5rem; text-align: center; gap: 20px; transition: background var(--transition);
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  max-width: 480px;
 }
-.faceBack { transform: rotateY(180deg); }
-.faceLabel { font-size: 10px; font-weight: 600; color: var(--text-muted); letter-spacing: 0.1em; }
-.faceText  { font-family: var(--font-display); font-size: 20px; line-height: 1.6; color: var(--text); }
-.hint      { font-size: 12px; color: var(--text-muted); }
-.topic     { font-size: 11px; color: var(--text-muted); font-style: italic; }
-.actions { display: flex; gap: 12px; width: 100%; opacity: 0; transform: translateY(8px); pointer-events: none; transition: opacity 0.3s ease, transform 0.3s ease; }
-.actionsVisible { opacity: 1; transform: translateY(0); pointer-events: all; }
-.btnKnow, .btnRemember { flex: 1; padding: 14px; border-radius: var(--radius-md); font-family: var(--font-ui); font-size: 14px; font-weight: 500; cursor: pointer; transition: opacity var(--transition); }
-.btnKnow:hover, .btnRemember:hover { opacity: 0.8; }
-.btnKnow     { background: var(--btn-know-bg); color: var(--btn-know-text); border: 1px solid var(--btn-know-border); }
-.btnRemember { background: var(--btn-rem-bg);  color: var(--btn-rem-text);  border: none; }
-.flipHint { font-size: 12px; color: var(--text-muted); }
+
+.flipScene {
+  width: 100%;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.flipInner {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.flipInner.flipped {
+  transform: rotateY(180deg);
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background: var(--card-bg);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem;
+  text-align: center;
+  gap: 20px;
+  transition: background var(--transition);
+}
+
+.faceBack {
+  transform: rotateY(180deg);
+}
+
+.faceLabel {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+}
+
+.faceText {
+  font-family: var(--font-display);
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.hint {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.topic {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.actionsVisible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+.btnKnow,
+.btnRemember {
+  flex: 1;
+  padding: 14px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity var(--transition);
+}
+
+.btnKnow:hover,
+.btnRemember:hover {
+  opacity: 0.8;
+}
+
+.btnKnow {
+  background: var(--btn-know-bg);
+  color: var(--btn-know-text);
+  border: 1px solid var(--btn-know-border);
+}
+
+.btnRemember {
+  background: var(--btn-rem-bg);
+  color: var(--btn-rem-text);
+  border: none;
+}
+
+.flipHint {
+  font-size: 12px;
+  color: var(--text-muted);
+}
