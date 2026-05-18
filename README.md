@@ -6,7 +6,7 @@
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-18+-339933?logo=node.js&logoColor=white)
-![License](https://img.shields.io/badge/license-MIT-blue)
+
 
 ---
 
@@ -22,7 +22,6 @@
 - [Variáveis de ambiente](#-variáveis-de-ambiente)
 - [Deploy](#-deploy)
 - [Autor](#-autor)
-- [Licença](#-licença)
 
 ---
 
